@@ -6,21 +6,25 @@
 
 
     <Button
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="自动"
         android:onClick="autoClick"/>
     <Button
+        android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="简体中文"
         android:onClick="rCNClick"/>
     <Button
+        android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="繁体中文"
         android:onClick="rTWClick"/>
     <Button
+        android:id="@+id/btn4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="英文"
