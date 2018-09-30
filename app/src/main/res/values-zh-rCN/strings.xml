@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">语言切换</string>
+    <string name="app_tips">我是中国人</string>
+</resources>

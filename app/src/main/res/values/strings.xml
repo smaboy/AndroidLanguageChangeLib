@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">LanguageSwitch</string>
+    <string name="app_name">语言切换</string>
+
+    <string name="app_tips">我是中国人</string>
 </resources>
