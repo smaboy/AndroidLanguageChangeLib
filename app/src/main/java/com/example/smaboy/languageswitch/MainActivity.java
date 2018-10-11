@@ -44,16 +44,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //获取app当前语言环境,默认情况下为简体中文
-        String local = getSharedPreferences("share", MODE_PRIVATE).getString("local", "");
+        String local = LanguageManager.getSelectLanguage(this);
         if("zh-CN".equals(local)) {//简体中文
             tv3.setText("简体中文");
-//            LanguageManager.changeAppLanguage(Locale.SIMPLIFIED_CHINESE,this);
         }else if("zh-TW".equals(local)) {//繁体中文
             tv3.setText("繁体中文");
-//            LanguageManager.changeAppLanguage(Locale.TRADITIONAL_CHINESE,this);
         }else if("en-US".equals(local)) {//美式英语
-            tv3.setText("美式英语");
-//            LanguageManager.changeAppLanguage(Locale.US,this);
+            tv3.setText("英语");
+        }else {
+            tv3.setText("自动");
         }
 
     }

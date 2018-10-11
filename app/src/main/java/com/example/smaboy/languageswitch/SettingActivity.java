@@ -55,7 +55,7 @@ public class SettingActivity extends AppCompatActivity {
 
     public void autoClick(View view) {//自动
 
-        getSharedPreferences("share", MODE_PRIVATE).edit().putString("local","").apply();
+        LanguageManager.saveSelectLanguage(this,"");
         LanguageManager.changeAppLanguage(LanguageManager.getCurrentSystemLocal(),this);
         //重新启动Activity
         Intent intent = new Intent(this, MainActivity.class);
@@ -65,7 +65,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void rCNClick(View view) {//简体中文
-        getSharedPreferences("share", MODE_PRIVATE).edit().putString("local","zh-CN").apply();
+        LanguageManager.saveSelectLanguage(this,"zh-CN");
         LanguageManager.changeAppLanguage(Locale.SIMPLIFIED_CHINESE,this);
         //重新启动Activity
         Intent intent = new Intent(this, MainActivity.class);
@@ -75,7 +75,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void rTWClick(View view) {//繁体中文
-        getSharedPreferences("share", MODE_PRIVATE).edit().putString("local","zh-TW").apply();
+        LanguageManager.saveSelectLanguage(this,"zh-TW");
         LanguageManager.changeAppLanguage(Locale.TRADITIONAL_CHINESE,this);
         //重新启动Activity
         Intent intent = new Intent(this, MainActivity.class);
@@ -85,7 +85,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void rUSClick(View view) {//英文
-        getSharedPreferences("share", MODE_PRIVATE).edit().putString("local","en-US").apply();
+        LanguageManager.saveSelectLanguage(this,"en-US");
         LanguageManager.changeAppLanguage(Locale.US,this);
         //重新启动Activity
         Intent intent = new Intent(this, MainActivity.class);
