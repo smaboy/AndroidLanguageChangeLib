@@ -1,52 +1,38 @@
-package com.example.smaboy.languageswitch;
+package com.example.smaboy.languageswitch.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Locale;
+import com.example.smaboy.languageswitch.manager.LanguageManager;
+import com.example.smaboy.languageswitch.R;
+import com.example.smaboy.languageswitch.base.BaseActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     TextView tv1;
     TextView tv2;
     TextView tv3;
 
-    private BroadcastReceiver mReceiver=new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
 
-            if(intent.getAction().equals((Intent.ACTION_LOCALE_CHANGED))) {
-                Log.e("TAG", "系统语言变化了为："+LanguageManager.getCurrentSystemLanguageCountry());
-                //将变化后的系统语言保存到本地
-                LanguageManager.saveSysLanguage(getApplicationContext(),LanguageManager.getCurrentSystemLanguageCountry());
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //注册广播监听系统语言环境变化
-        IntentFilter filter =new IntentFilter();
-        filter.addAction(Intent.ACTION_LOCALE_CHANGED);
-        registerReceiver(mReceiver, filter);
 
+        //初始化本地语言环境
+        //初始化app语言环境
+//        if(!TextUtils.isEmpty(LanguageManager.getSelectLanguage(this))) {
+//
+//            Locale locale=LanguageManager.getLocalByString(LanguageManager.getSelectLanguage(this));
+//
+//            Log.e("TAG", "当前用户选择的语言为："+LanguageManager.getSelectLanguage(this));
+//            LanguageManager.changeAppLanguage(locale,this);
+//        }
 
         tv1 = findViewById(R.id.tv_1);
         tv2 = findViewById(R.id.tv_2);
@@ -55,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //设置数据
 
         //重新赋值
-        tv1.setText(getApplicationContext().getResources().getString(R.string.app_tips));
+        tv1.setText(getResources().getString(R.string.app_tips));
 
         //获取手机系统语言环境
         String language = LanguageManager.getSysLanguage(this);
@@ -95,13 +81,4 @@ public class MainActivity extends AppCompatActivity {
         String local = getSharedPreferences("share", MODE_PRIVATE).getString("local", "zh-CN");
     }
 
-    public void lookSysLanguage(View view) {
-        //查看当前手机的语言环境
-
-        final AlertDialog alertDialog=new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("手机语言环境");
-        alertDialog.setMessage(LanguageManager.getCurrentSystemLanguageCountry());
-        alertDialog.show();
-
-    }
 }

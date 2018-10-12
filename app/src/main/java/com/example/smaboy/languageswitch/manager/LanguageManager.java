@@ -1,4 +1,4 @@
-package com.example.smaboy.languageswitch;
+package com.example.smaboy.languageswitch.manager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -76,22 +76,8 @@ public class LanguageManager {
      */
     public static void changeAppLanguage(Locale locale, Context context) {
 
-//        Resources resources = context.getResources();
-//        DisplayMetrics dm = resources.getDisplayMetrics();
-//        Configuration configuration = resources.getConfiguration();
-//        // app locale
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//            configuration.setLocale(locale);
-//        } else {
-//            configuration.locale = locale;
-//        }
-//
-//        // updateConfiguration
-//
-//        resources.updateConfiguration(configuration, dm);
-
         //适配8.0
-        Resources resources = context.getApplicationContext().getResources();
+        Resources resources = context.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();
         config.locale = locale;
@@ -137,7 +123,7 @@ public class LanguageManager {
      */
     public static void saveSelectLanguage(Context context, String language) {
 
-        context.getSharedPreferences("share", Context.MODE_PRIVATE).edit().putString("local", language).apply();
+        context.getApplicationContext().getSharedPreferences("share", Context.MODE_PRIVATE).edit().putString("local", language).apply();
 
     }
 
@@ -148,7 +134,7 @@ public class LanguageManager {
      */
     public static String getSelectLanguage(Context context) {
 
-        return context.getSharedPreferences("share", Context.MODE_PRIVATE).getString("local", "");
+        return context.getApplicationContext().getSharedPreferences("share", Context.MODE_PRIVATE).getString("local", "");
 
     }
 
@@ -160,7 +146,7 @@ public class LanguageManager {
      */
     public static void saveSysLanguage(Context context, String language) {
 
-        context.getSharedPreferences("share", Context.MODE_PRIVATE).edit().putString("sys_local", language).apply();
+        context.getApplicationContext().getSharedPreferences("share", Context.MODE_PRIVATE).edit().putString("sys_local", language).apply();
 
     }
 
@@ -171,7 +157,7 @@ public class LanguageManager {
      */
     public static String getSysLanguage(Context context) {
 
-        return context.getSharedPreferences("share", Context.MODE_PRIVATE).getString("sys_local", "");
+        return context.getApplicationContext().getSharedPreferences("share", Context.MODE_PRIVATE).getString("sys_local", "");
 
     }
 

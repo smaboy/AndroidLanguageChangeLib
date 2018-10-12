@@ -1,4 +1,4 @@
-package com.example.smaboy.languageswitch;
+package com.example.smaboy.languageswitch.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.smaboy.languageswitch.manager.LanguageManager;
+import com.example.smaboy.languageswitch.R;
 
 import java.util.Locale;
 
@@ -56,7 +59,7 @@ public class SettingActivity extends AppCompatActivity {
     public void autoClick(View view) {//自动
 
         LanguageManager.saveSelectLanguage(this,"");
-        LanguageManager.changeAppLanguage(LanguageManager.getCurrentSystemLocal(),this);
+        LanguageManager.changeAppLanguage(LanguageManager.getLocalByString(LanguageManager.getSysLanguage(this)),this);
         //重新启动Activity
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
