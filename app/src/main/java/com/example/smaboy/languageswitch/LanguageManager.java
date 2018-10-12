@@ -71,31 +71,26 @@ public class LanguageManager {
 
     /**
      * 更改应用语言
-     *
+     *  注意 这里的context不要是application中的context
      * @param locale
      */
     public static void changeAppLanguage(Locale locale, Context context) {
 
-        Resources resources = context.getResources();
-        Configuration configuration = resources.getConfiguration();
+//        Resources resources = context.getResources();
+//        DisplayMetrics dm = resources.getDisplayMetrics();
+//        Configuration configuration = resources.getConfiguration();
+//        // app locale
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            configuration.setLocale(locale);
+//        } else {
+//            configuration.locale = locale;
+//        }
+//
+//        // updateConfiguration
+//
+//        resources.updateConfiguration(configuration, dm);
 
-        // app locale
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLocale(locale);
-        } else {
-            configuration.locale = locale;
-        }
-
-        // updateConfiguration
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        resources.updateConfiguration(configuration, dm);
-    }
-
-
-    /**
-     * 设置语言类型
-     */
-    public static void setApplicationLanguage(Context context, Locale locale) {
+        //适配8.0
         Resources resources = context.getApplicationContext().getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();
@@ -108,7 +103,11 @@ public class LanguageManager {
             Locale.setDefault(locale);
         }
         resources.updateConfiguration(config, dm);
+
+
+
     }
+
 
     /**
      * 将zh-CN等转化为Local
@@ -153,5 +152,27 @@ public class LanguageManager {
 
     }
 
+    /**
+     * 将用户选择的语言。保存到本地，进行持久化
+     *
+     * @param language
+     * @return
+     */
+    public static void saveSysLanguage(Context context, String language) {
+
+        context.getSharedPreferences("share", Context.MODE_PRIVATE).edit().putString("sys_local", language).apply();
+
+    }
+
+    /**
+     * 取出用户保存的语言
+     *
+     * @return
+     */
+    public static String getSysLanguage(Context context) {
+
+        return context.getSharedPreferences("share", Context.MODE_PRIVATE).getString("sys_local", "");
+
+    }
 
 }

@@ -18,6 +18,11 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //获取系统语言，并保存
+        LanguageManager.saveSysLanguage(getApplicationContext(),LanguageManager.getCurrentSystemLanguageCountry());
+
+        //读取用户，语言并设置
         setLanguageConfiguration();
 
 
@@ -29,7 +34,7 @@ public class MyApplication extends Application {
 
             Locale locale=LanguageManager.getLocalByString(LanguageManager.getSelectLanguage(this));
 
-            Log.e("TAG", "当前用户选择的语言为："+locale.toString());
+            Log.e("TAG", "当前用户选择的语言为："+LanguageManager.getSelectLanguage(this));
             LanguageManager.changeAppLanguage(locale,this);
         }
     }
